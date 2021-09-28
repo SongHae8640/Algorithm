@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class FunctionDevelopment {
+public class FunctionDevelopment2 {
 
 	public static void main(String[] args) {
-		solution(new int[] {93, 30, 55},new int[] {1, 30, 5} );
-
+		//solution(new int[] {93, 30, 55},new int[] {1, 30, 5} );
+		solution(new int[] {95, 90, 99, 99, 80, 99},new int[] {1, 1, 1, 1, 1, 1} );	//[1, 3, 2]
 	}
 	
 	
@@ -44,3 +44,23 @@ public class FunctionDevelopment {
     }
 
 }
+/**
+ * 기능개발
+ * https://programmers.co.kr/learn/courses/30/lessons/42586
+ *
+ * 정확성  테스트
+ * 테스트 1 〉	통과 (0.35ms, 83.1MB)
+ * 테스트 2 〉	통과 (0.36ms, 77.7MB)
+ * 테스트 3 〉	통과 (0.43ms, 71.2MB)
+ * 테스트 4 〉	통과 (0.25ms, 71.8MB)
+ * 테스트 5 〉	통과 (0.21ms, 73.3MB)
+ * 테스트 6 〉	통과 (0.22ms, 79.2MB)
+ * 테스트 7 〉	통과 (0.28ms, 78.3MB)
+ * 테스트 8 〉	통과 (0.20ms, 70.7MB)
+ * 테스트 9 〉	통과 (0.25ms, 77.2MB)
+ * 테스트 10 〉	통과 (0.43ms, 71.2MB)
+ * 테스트 11 〉	통과 (0.21ms, 77.8MB)
+ * 채점 결과
+ * 정확성: 100.0
+ * 합계: 100.0 / 100.0
+ * */
