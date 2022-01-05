@@ -1,26 +1,21 @@
 package level1;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class ShahadNumber {
 
     boolean solution(int x) {
 
+        int digitSum = 0;
+        int xDividedByTen = x;
 
-        int numberSum = 0;  //각 자릿수의 합
-
-        int tempX = x;  //자릿수를 뽑기 위한 임시 값
-
-        while(tempX != 0){
-
-            numberSum += tempX % 10;    //1의 자릿수 더하기
-            tempX /=10;
+        while(xDividedByTen != 0){
+            digitSum += xDividedByTen % 10;
+            xDividedByTen /=10;
 
         }
 
 
         //각 자릿수의 합이 입력 값으로 나누어지는지 확인
-        return (x % numberSum) == 0;
+        return (x % digitSum) == 0;
     }
 
 }
