@@ -1,12 +1,26 @@
 package level1;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * 다음 큰 숫자
+ * https://school.programmers.co.kr/courses/13207/lessons/90303
+ * */
 public class NextBigNumber {
+
+    public static void main(String[] args) {
+        NextBigNumber nextBigNumber = new NextBigNumber();
+        assertEquals(83,nextBigNumber.solution(78));
+        assertEquals(23,nextBigNumber.solution(15));
+
+    }
 
     public int solution(int n) {
         // 조건 1. n보다 큰 자연수
         int answer = n+1;
 
-        int nOneCount = getBinaryOneCount(n);
+        final int nOneCount = getBinaryOneCount(n);
 
         // 조건 2. 2진수로 변환했을때 1의 갯수가 같다
         // 조건 3. 조건1,2중 가장 작은 수
@@ -30,38 +44,42 @@ public class NextBigNumber {
     }
 
 
-}
+    //라이브러리를 이용한 풀이
+    //효율은 1과 비슷함
+    private int getBinaryOneCount2(int n) {
+        return Integer.bitCount(n);
+    }
 
-/**
- *
- * 다음 큰 숫자
- * https://school.programmers.co.kr/courses/13207/lessons/90303
- *
- * 정확성  테스트
- * 테스트 1 〉	통과 (0.01ms, 74.4MB)
- * 테스트 2 〉	통과 (0.02ms, 74.3MB)
- * 테스트 3 〉	통과 (0.02ms, 73.8MB)
- * 테스트 4 〉	통과 (0.02ms, 77.4MB)
- * 테스트 5 〉	통과 (0.01ms, 74.7MB)
- * 테스트 6 〉	통과 (0.02ms, 78.9MB)
- * 테스트 7 〉	통과 (0.02ms, 77.2MB)
- * 테스트 8 〉	통과 (0.03ms, 74.8MB)
- * 테스트 9 〉	통과 (0.02ms, 75MB)
- * 테스트 10 〉	통과 (0.02ms, 77.1MB)
- * 테스트 11 〉	통과 (0.02ms, 76.7MB)
- * 테스트 12 〉	통과 (0.01ms, 79.1MB)
- * 테스트 13 〉	통과 (0.02ms, 74.3MB)
- * 테스트 14 〉	통과 (0.02ms, 81.1MB)
- * 효율성  테스트
- * 테스트 1 〉	통과 (0.02ms, 67.4MB)
- * 테스트 2 〉	통과 (0.01ms, 52.3MB)
- * 테스트 3 〉	통과 (0.02ms, 52.5MB)
- * 테스트 4 〉	통과 (0.02ms, 52MB)
- * 테스트 5 〉	통과 (0.03ms, 52.4MB)
- * 테스트 6 〉	통과 (0.02ms, 52MB)
- * 채점 결과
- * 정확성: 70.0
- * 효율성: 30.0
- * 합계: 100.0 / 100.0
- *
- * */
+    //문자열을 이용한 풀이
+    //형변환이 있어 1번보다 오래 걸림
+    private int getBinaryOneCount3(int n) {
+        int oneCount = 0;
+
+        char[] chars = Integer.toBinaryString(n).toCharArray();
+        for(char c : chars){
+            if(c == '1') oneCount++;
+        }
+
+        return oneCount;
+    }
+
+    //필터를 이용한 풀이
+    //필터를 사용하니 메모리 사용량이 크고, 효율성에서 시간초과
+    private int getBinaryOneCount4(int n) {
+        return (int)Integer.toBinaryString(n).chars().filter(ch -> ch =='1').count();
+    }
+
+
+    //비트연산자를 이용한 풀이
+    //1번과 비슷한 수준
+    private int getBinaryOneCount5(int n) {
+        int count = 0;
+
+        while (n > 0){
+            if((n & 1) == 1) count++;
+            n >>=1;
+        }
+        return count;
+    }
+
+}
