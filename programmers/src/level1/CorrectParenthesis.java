@@ -1,26 +1,49 @@
 package level1;
 
+import java.util.Stack;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CorrectParenthesis {
+	public static void main(String[] args) {
+		CorrectParenthesis parenthesis = new CorrectParenthesis();
+
+		assertEquals(true , parenthesis.solution("()()"));
+		assertEquals(true , parenthesis.solution("(())()"));
+		assertEquals(false , parenthesis.solution(")()("));
+		assertEquals(false , parenthesis.solution("(()("));
+	}
 
 	boolean solution(String s) {
-
 		//괄호가 열리면 +1, 닫히면 -1
 		int openCloseCount = 0;
 
-		for(int i = 0 ; i < s.length(); i++){
-			if(s.charAt(i) == '('){
+		for(char ch : s.toCharArray()){
+			if(ch== '('){
 				openCloseCount++;
 			}else{
+				//앞에 열린것 보다 닫힌게 많아지면 false
+				if(openCloseCount == 0)	return false;
 				openCloseCount--;
-			}
-
-			//앞에 열린것 보다 닫힌게 많아지면 false
-			if(openCloseCount < 0){
-				return false;
 			}
 		}
 
 		return openCloseCount == 0;
+	}
+
+	//스택을 이용한 풀이
+	boolean solution2(String s){
+		Stack<Character> stack = new Stack<>();
+		for(char ch : s.toCharArray()){
+			if(ch== '('){
+				stack.push(ch);
+			}else{
+				if(stack.empty()) return false;
+				stack.pop();
+			}
+		}
+
+		return stack.empty();
 	}
 
 
