@@ -1,37 +1,44 @@
 package level2;
 
+import org.junit.jupiter.api.Assertions;
+
 import java.util.PriorityQueue;
 
 public class MoreSpicy1 {
     public static void main(String[] args) {
+        MoreSpicy1 moreSpicy1 = new MoreSpicy1();
+        Assertions.assertEquals(2 , moreSpicy1.solution(new int[] {1, 2, 3, 9, 10, 12}, 7 ));
 
-        solution(new int[] {1, 2, 3, 9, 10, 12}, 200 );	// return = 2
+
 
     }
 
-    public static int solution(int[] scoville, int K) {
+    public int solution(int[] scoville, int K) {
 
-        int answer = 0 ;
+        int minMixCount = 0 ;
 
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
-
-        for (int i = 0 ; i < scoville.length ; i ++){
-            priorityQueue.offer(scoville[i]);
+        for (int scovilleOne : scoville){
+            priorityQueue.offer(scovilleOne);
         }
 
 
-        int firstNotSpicy;
-        while(true){
-            firstNotSpicy = priorityQueue.poll();
-            if(firstNotSpicy >= K){
+        int minScovile = 0 ;
+        while(minScovile < K){
+
+            minScovile = priorityQueue.poll();
+
+            if(minScovile >= K ){
                 break;
             }else if(priorityQueue.isEmpty()){
                 return -1;
             }
-            priorityQueue.add(firstNotSpicy + priorityQueue.poll()*2);
-            answer++;
+
+            //음식 섞기
+            priorityQueue.add(minScovile + priorityQueue.poll()*2);
+            minMixCount++;
         }
-        return answer;
+        return minMixCount;
     }
 }
 /**
