@@ -2,6 +2,14 @@ package level3;
 
 import java.util.TreeSet;
 
+/*
+ * 힙(Heap)
+ * https://programmers.co.kr/learn/courses/30/lessons/42628
+ *
+ * I 숫자: 큐에 주어진 숫자를 삽입
+ * D 1: 큐에서 최댓값 삭제
+ * D -1: 큐에서 최솟값 삭제
+ */
 public class DoublePriorityQueue {
     public static void main(String[] args) {
         // ["I 16", "I -5643", "D -1", "D 1", "D 1", "I 123", "D -1"] => [0, 0]
